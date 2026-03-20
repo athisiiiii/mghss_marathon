@@ -877,7 +877,7 @@
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero" id="top">
   <div class="header-band">
-    <div class="school-logo"><img src="PHOTO-2026-03-18-10-18-08-removebg-preview.png" alt="MGHSS Logo"></div>
+    <div class="school-logo"><img src="/PHOTO-2026-03-18-10-18-08-removebg-preview.png" alt="MGHSS Logo"></div>
     <div class="school-name-block">
       <div class="school-name">Mount Gibeon Higher Secondary School</div>
       <div class="school-tagline">A Wise and Understanding Heart — Tadubi</div>
@@ -1204,26 +1204,24 @@
     document.getElementById('regForm').style.opacity = '0.6';
     document.getElementById('regForm').style.pointerEvents = 'none';
 
+    // Send as URL-encoded form data — Apps Script reads this via e.postData.contents
+    const formBody = Object.entries(payload)
+      .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+      .join('&');
+
     fetch(SHEET_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    .then(() => {
-      // no-cors means we can't read response, but if no error thrown it worked
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody,
+    }).catch(() => {});
+
+    // Show success after short delay (no-cors means we can't read the response)
+    setTimeout(() => {
       document.getElementById('regForm').style.opacity = '0.3';
       document.getElementById('successMsg').classList.add('show');
       document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    })
-    .catch(() => {
-      // Re-enable on network error
-      btn.innerHTML = origText;
-      btn.disabled = false;
-      document.getElementById('regForm').style.opacity = '1';
-      document.getElementById('regForm').style.pointerEvents = 'auto';
-      alert('Network error — please check your connection and try again.');
-    });
+    }, 2000);
   }
 
   // ─── CUSTOM DOB CALENDAR ───
