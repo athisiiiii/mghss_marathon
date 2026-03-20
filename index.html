@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGHSS Open Marathon 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A017;
+    --dark-green: #1a3a1a;
+    --mid-green: #2d5a27;
+    --light-green: #4a8c3f;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --orange: #e85c0d;
+    --dark: #0d1f0d;
+    --shadow-gold: rgba(212,160,23,0.4);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark-green);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(10,30,10,0.85) 0%, rgba(26,58,26,0.7) 40%, rgba(20,50,15,0.9) 100%),
+      url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1600&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(212,160,23,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ─── HEADER BAND ─── */
+  .header-band {
+    width: 100%;
+    background: linear-gradient(135deg, #b8860b 0%, #f5d060 30%, #D4A017 55%, #c9920c 80%, #a07010 100%);
+    border-bottom: 3px solid #7a5500;
+    border-top: 3px solid #f5e080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 10px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+  }
+
+  .school-logo {
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  }
+
+  .school-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .school-name-block { text-align: center; }
+
+  .school-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    letter-spacing: 3px;
+    color: #1a0a00;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(255,220,80,0.3);
+  }
+
+  .school-tagline {
+    font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+    color: #3a1a00;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  /* ─── HERO CONTENT ─── */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 20px 60px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .event-subtitle {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-style: italic;
+    color: var(--cream);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+
+  .event-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    letter-spacing: 6px;
+    line-height: 0.9;
+    background: linear-gradient(135deg, #f5d060, #D4A017, #a07010);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 20px rgba(212,160,23,0.5));
+  }
+
+  /* ─── FREE ENTRY BUTTON ─── */
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    padding: 10px 28px;
+    border-radius: 50px;
+    margin: 16px 0;
+    box-shadow: 0 4px 20px rgba(232,92,13,0.5);
+    animation: pulse 2s ease-in-out infinite;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+
+  .free-badge:hover {
+    background: #ff6e1f;
+    box-shadow: 0 8px 32px rgba(232,92,13,0.7);
+    transform: scale(1.06);
+    animation: none;
+  }
+
+  .free-badge:active {
+    transform: scale(0.98);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(232,92,13,0.5); }
+    50%       { transform: scale(1.04); box-shadow: 0 6px 28px rgba(232,92,13,0.7); }
+  }
+
+  /* ─── INFO CARDS ROW ─── */
+  .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 36px;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .info-card {
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(212,160,23,0.35);
+    border-radius: 12px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(6px);
+    min-width: 200px;
+  }
+
+  .info-icon { font-size: 1.4rem; color: var(--gold); width: 28px; text-align: center; }
+
+  .info-label {
+    font-size: 0.72rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+
+  .info-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  /* ─── PRIZES SECTION ─── */
+  .section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .section-line {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+  }
+
+  .prizes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .prizes-grid { grid-template-columns: 1fr; }
+  }
+
+  .prize-card {
+    background: linear-gradient(145deg, rgba(26,58,26,0.9), rgba(13,31,13,0.95));
+    border: 1px solid rgba(212,160,23,0.4);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prize-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--light-green), var(--gold));
+  }
+
+  .prize-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prize-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(212,160,23,0.15);
+  }
+
+  .prize-row:last-child { border-bottom: none; }
+
+  .prize-position {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .medal { font-size: 1.3rem; }
+
+  .prize-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .prize-currency {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    display: block;
+    text-align: right;
+  }
+
+  /* ─── REGISTRATION FORM ─── */
+  .form-section {
+    background: linear-gradient(180deg, var(--dark-green) 0%, #0d1a0d 100%);
+    padding: 70px 20px;
+    position: relative;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .form-container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, rgba(26,58,26,0.8), rgba(13,20,13,0.9));
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 24px;
+    padding: clamp(28px, 5vw, 52px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,160,23,0.2);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+  }
+
+  .form-input, .form-select {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    outline: none;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .form-input:focus, .form-select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212,160,23,0.15);
+  }
+
+  .form-select option { background: #1a3a1a; color: #fff; }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-wrapper::after {
+    content: '▾';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    pointer-events: none;
+    font-size: 1rem;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 8px;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+
+  .radio-label:hover { border-color: var(--gold); background: rgba(212,160,23,0.08); }
+
+  input[type="radio"] { accent-color: var(--gold); width: 16px; height: 16px; }
+
+  input[type="radio"]:checked + .radio-label,
+  .radio-label:has(input[type="radio"]:checked) {
+    border-color: var(--gold);
+    background: rgba(212,160,23,0.15);
+    color: var(--gold);
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 8px;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+
+  .radio-option:hover { border-color: var(--gold); background: rgba(212,160,23,0.08); }
+
+  .radio-option input { display: none; }
+
+  .radio-option.selected {
+    border-color: var(--gold);
+    background: rgba(212,160,23,0.18);
+    color: var(--gold);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #D4A017, #a07010);
+    border: none;
+    border-radius: 12px;
+    color: var(--dark);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 8px;
+    box-shadow: 0 6px 24px rgba(212,160,23,0.35);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(212,160,23,0.5);
+    background: linear-gradient(135deg, #f0bc30, #D4A017);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  /* ─── SUCCESS MESSAGE ─── */
+  .success-msg {
+    display: none;
+    background: linear-gradient(135deg, rgba(74,140,63,0.3), rgba(26,58,26,0.5));
+    border: 1px solid var(--light-green);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .success-msg.show { display: block; animation: fadeUp 0.5s ease; }
+  .success-msg h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #6fcf60; letter-spacing: 2px; }
+  .success-msg p { color: var(--cream); margin-top: 6px; font-size: 0.9rem; }
+
+  /* ─── PROMO BANNER ─── */
+  .promo-banner {
+    background: linear-gradient(135deg, #1a3a0a, #0d2005);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 28px 36px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+
+  .promo-banner h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+
+  .promo-banner p {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--white);
+    margin: 6px 0;
+  }
+
+  .promo-banner .concession {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    padding: 5px 18px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    margin-top: 8px;
+  }
+
+  /* ─── SPONSORS ─── */
+  .sponsors {
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(212,160,23,0.25);
+    padding: 36px 20px;
+    text-align: center;
+  }
+
+  .sponsors-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .sponsors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .sponsor-chip {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050f05;
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(212,160,23,0.15);
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ─── NAV DOT ─── */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(212,160,23,0.5);
+    z-index: 99;
+    transition: transform 0.2s;
+    text-decoration: none;
+  }
+  .scroll-top:hover { transform: scale(1.1); }
+
+  /* ─── DIVIDER ─── */
+  .wave-divider {
+    width: 100%;
+    line-height: 0;
+    background: var(--dark-green);
+  }
+  .wave-divider svg { display: block; }
+
+  /* ══════════════════════════════════════════
+     MOBILE RESPONSIVE — 480px and below
+  ══════════════════════════════════════════ */
+  @media (max-width: 480px) {
+
+    /* Header band: tighter, logo smaller */
+    .header-band {
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+    .school-logo { width: 64px; height: 64px; }
+    .school-name { font-size: 1.3rem; letter-spacing: 1.5px; }
+    .school-tagline { font-size: 0.65rem; letter-spacing: 0.5px; }
+
+    /* Hero content */
+    .hero-content { margin-top: 24px; padding: 0 14px 40px; }
+    .event-subtitle { font-size: 0.75rem; letter-spacing: 1px; }
+    .event-title { font-size: clamp(3rem, 18vw, 5rem); letter-spacing: 3px; }
+
+    /* FREE ENTRY button full-width on mobile */
+    .free-badge {
+      font-size: 1.15rem;
+      padding: 10px 18px;
+      letter-spacing: 1px;
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    /* Info cards: stack full-width */
+    .info-row { gap: 10px; margin-top: 24px; }
+    .info-card {
+      min-width: 0;
+      width: 100%;
+      padding: 12px 16px;
+    }
+    .info-value { font-size: 0.88rem; }
+
+    /* Prizes section */
+    .prizes-grid { grid-template-columns: 1fr; gap: 16px; }
+    .prize-card { padding: 20px 16px; }
+    .prize-card-title { font-size: 1.3rem; }
+    .prize-amount { font-size: 1.2rem; }
+    .prize-position { font-size: 0.85rem; }
+
+    /* Section headings */
+    .section-title { font-size: 1.8rem; letter-spacing: 2px; }
+
+    /* Promo banner */
+    .promo-banner { padding: 20px 16px; margin-bottom: 40px; }
+    .promo-banner h3 { font-size: 1.1rem; letter-spacing: 1.5px; }
+    .promo-banner p { font-size: 0.95rem; }
+    .promo-banner .concession { font-size: 0.9rem; padding: 5px 12px; }
+
+    /* Form section */
+    .form-section { padding: 48px 12px; }
+    .form-container { padding: 22px 16px; border-radius: 16px; }
+    .form-grid { grid-template-columns: 1fr; gap: 14px; }
+    .form-group.full-width { grid-column: 1; }
+    .form-input, .form-select { font-size: 1rem; padding: 13px 14px; }
+
+    /* Radio options: stack vertically */
+    .radio-group { flex-direction: column; gap: 10px; }
+    .radio-option {
+      min-width: 0;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+    }
+
+    /* Submit button */
+    .submit-btn { font-size: 1.1rem; letter-spacing: 2px; padding: 15px; }
+
+    /* Success message */
+    .success-msg h3 { font-size: 1.4rem; }
+    .success-msg p { font-size: 0.85rem; }
+
+    /* Sponsors */
+    .sponsors { padding: 28px 14px; }
+    .sponsor-chip { font-size: 0.75rem; padding: 7px 12px; }
+
+    /* Scroll-to-top button: smaller, closer to edge */
+    .scroll-top { width: 40px; height: 40px; font-size: 1.1rem; bottom: 18px; right: 18px; }
+  }
+
+  /* ══════════════════════════════════════════
+     TABLET — 481px to 768px
+  ══════════════════════════════════════════ */
+  @media (min-width: 481px) and (max-width: 768px) {
+
+    .header-band { gap: 12px; padding: 10px 20px; }
+    .school-logo { width: 72px; height: 72px; }
+    .school-name { font-size: clamp(1.3rem, 3.5vw, 2rem); }
+
+    .hero-content { margin-top: 32px; padding: 0 18px 50px; }
+
+    .info-card { min-width: 160px; padding: 12px 16px; }
+    .info-value { font-size: 0.88rem; }
+
+    .prizes-grid { grid-template-columns: 1fr; gap: 18px; }
+    .prize-card { padding: 22px 20px; }
+
+    .promo-banner { padding: 24px 20px; }
+
+    .form-section { padding: 56px 16px; }
+    .form-container { padding: 28px 22px; }
+    .form-grid { grid-template-columns: 1fr; gap: 16px; }
+    .form-group.full-width { grid-column: 1; }
+    .radio-group { flex-direction: column; gap: 10px; }
+    .radio-option { min-width: 0; width: 100%; }
+  }
+
+  /* ─── CUSTOM DOB CALENDAR ─── */
+  .dob-display {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: rgba(255,255,255,0.35);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .dob-display:hover, .dob-display.open {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212,160,23,0.15);
+  }
+  .dob-display.has-value { color: var(--white); }
+
+  .cal-popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 200;
+    background: linear-gradient(145deg, #1a3a1a, #0d200d);
+    border: 1px solid rgba(212,160,23,0.5);
+    border-radius: 14px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,160,23,0.1);
+    animation: calFadeIn 0.18s ease;
+  }
+  .cal-popup.show { display: block; }
+
+  @keyframes calFadeIn {
+    from { opacity:0; transform: translateY(-6px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 6px;
+  }
+  .cal-nav-btn {
+    background: rgba(212,160,23,0.15);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 8px;
+    color: var(--gold);
+    font-size: 1.3rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .cal-nav-btn:hover { background: rgba(212,160,23,0.3); }
+
+  .cal-header-selects {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+  }
+  .cal-select {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 7px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 6px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .cal-select:focus { border-color: var(--gold); }
+  .cal-select option { background: #1a3a1a; }
+
+  .cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(212,160,23,0.15);
+  }
+
+  .cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: rgba(255,255,255,0.85);
+    transition: background 0.12s, color 0.12s;
+    border: 1px solid transparent;
+  }
+  .cal-day:hover { background: rgba(212,160,23,0.18); border-color: rgba(212,160,23,0.3); }
+  .cal-day.today { border-color: rgba(212,160,23,0.5); color: var(--gold); }
+  .cal-day.selected {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 900;
+    border-color: var(--gold);
+  }
+  .cal-day.other-month { color: rgba(255,255,255,0.2); cursor: default; }
+  .cal-day.other-month:hover { background: none; border-color: transparent; }
+  .cal-day.future { color: rgba(255,255,255,0.2); cursor: not-allowed; }
+  .cal-day.future:hover { background: none; border-color: transparent; }
+
+  /* Mobile: show calendar centered below */
+  @media (max-width: 600px) {
+    .cal-popup { left: 50%; transform: translateX(-50%); top: calc(100% + 8px); }
+    .cal-popup.show { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="header-band">
+    <div class="school-logo"><img src="/PHOTO-2026-03-18-10-18-08-removebg-preview.png" alt="MGHSS Logo"></div>
+    <div class="school-name-block">
+      <div class="school-name">Mount Gibeon Higher Secondary School</div>
+      <div class="school-tagline">A Wise and Understanding Heart — Tadubi</div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="event-subtitle">Run for Children's Safety and Healthier Future</div>
+    <div class="event-title">OPEN<br>MARATHON</div>
+
+    <!-- FREE ENTRY button — scrolls to registration form -->
+    <a class="free-badge" href="#register" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'}); return false;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="28" height="30" fill="currentColor"><path d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 32.9-63.6 61.7-84.4c8.5-6.1 17.5-11.5 27-15.8l8-3.5c14.4-6.4 29.7-9.7 45.2-9.7c27.4 0 54 9.9 74.7 27.9l12.8 11.1c7.9 6.8 15.2 14.3 21.7 22.4l17.7 22.1c8.5 10.6 6.8 26-3.8 34.5s-26 6.8-34.5-3.8l-17.7-22.1c-4.4-5.5-9.3-10.6-14.7-15.1l-8.5-7.4 3.3 63.5 81.3 62.8c10.4 8 12.3 23 4.3 33.4l-2.4 3.1c-8 10.4-23 12.3-33.4 4.3l-87.7-67.8c-7.4-5.7-11.8-14.5-11.8-23.9l0-4-5.6 46.5c-1.1 9.4-6.6 17.7-14.8 22.4l-82.5 48c-14.3 8.3-32.5 3.5-40.9-10.8S6.2 360.5 20.5 352l73.6-42.8 15.7-131.4c1.2-9.9 4.9-19 10.7-26.5z"/></svg>
+      FREE ENTRY — Register Now
+    </a>
+
+    <div class="info-row">
+      <div class="info-card">
+        <span class="info-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25" height="38" fill="currentColor"><path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/></svg></span>
+        <div>
+          <div class="info-label">Date</div>
+          <div class="info-value">Saturday, March 28, 2026</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="25" height="38" fill="currentColor"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
+        <div>
+          <div class="info-label">Start Time</div>
+          <div class="info-value">05:30 AM</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26" height="30" fill="currentColor"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg></span>
+        <div>
+          <div class="info-label">Route</div>
+          <div class="info-value">Tadubi Junction to Kaibi</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="26" height="38" fill="currentColor"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/></svg></span>
+        <div>
+          <div class="info-label">Eligibility</div>
+          <div class="info-value">Age 13 years and above</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PRIZES ═══════════════════════════════ -->
+<div style="background:var(--dark-green); padding: 70px 20px 0;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-title"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="48" height="48" fill="currentColor"><path d="M400 0L176 0c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8L24 64C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9L192 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-26.1 0C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24L446.4 64c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112l84.4 0c9.1 90.1 29.2 150.3 51.9 190.6C133.4 281.5 84.8 250.6 48.9 112zm327.8 190.6c22.7-40.3 42.8-100.5 51.9-190.6l84.4 0c-35.9 138.6-84.5 169.5-136.3 190.6z"/></svg> Prize Money</div>
+    <div class="section-line"></div>
+
+    <div class="prizes-grid">
+      <!-- MEN -->
+      <div class="prize-card">
+        <div class="prize-card-title"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="28" height="38" fill="currentColor"><path d="M400 0L176 0c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8L24 64C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9L192 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-26.1 0C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24L446.4 64c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112l84.4 0c9.1 90.1 29.2 150.3 51.9 190.6C133.4 281.5 84.8 250.6 48.9 112zm327.8 190.6c22.7-40.3 42.8-100.5 51.9-190.6l84.4 0c-35.9 138.6-84.5 169.5-136.3 190.6z"/></svg> Men's 6 Km Run</div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#FFD700"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 1st Place</div>
+          <div><div class="prize-amount">₹5,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#C0C0C0"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 2nd Place</div>
+          <div><div class="prize-amount">₹3,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#CD7F32"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 3rd Place</div>
+          <div><div class="prize-amount">₹2,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="16" height="18" fill="#a0c878"><path d="M173.8 5.5c11-7.3 25.4-7.3 36.4 0L228 17.2c6 3.9 13 5.8 20.1 5.4l21.3-1.3c13.2-.8 25.6 6.4 31.5 18.2l9.6 19.1c3.2 6.4 8.4 11.5 14.7 14.7L344.5 83c11.8 5.9 19 18.3 18.2 31.5l-1.3 21.3c-.4 7.1 1.5 14.2 5.4 20.1l11.8 17.8c7.3 11 7.3 25.4 0 36.4L366.8 228c-3.9 6-5.8 13-5.4 20.1l1.3 21.3c.8 13.2-6.4 25.6-18.2 31.5l-19.1 9.6c-6.4 3.2-11.5 8.4-14.7 14.7L301 344.5c-5.9 11.8-18.3 19-31.5 18.2l-21.3-1.3c-7.1-.4-14.2 1.5-20.1 5.4l-17.8 11.8c-11 7.3-25.4 7.3-36.4 0L156 366.8c-6-3.9-13-5.8-20.1-5.4l-21.3 1.3c-13.2 .8-25.6-6.4-31.5-18.2l-9.6-19.1c-3.2-6.4-8.4-11.5-14.7-14.7L39.5 301c-11.8-5.9-19-18.3-18.2-31.5l1.3-21.3c.4-7.1-1.5-14.2-5.4-20.1L5.5 210.2c-7.3-11-7.3-25.4 0-36.4L17.2 156c3.9-6 5.8-13 5.4-20.1l-1.3-21.3c-.8-13.2 6.4-25.6 18.2-31.5l19.1-9.6C64.9 70.2 70 65 73.2 58.7L83 39.5c5.9-11.8 18.3-19 31.5-18.2l21.3 1.3c7.1 .4 14.2-1.5 20.1-5.4L173.8 5.5zM272 192a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM1.3 441.8L44.4 339.3c.2 .1 .3 .2 .4 .4l9.6 19.1c11.7 23.2 36 37.3 62 35.8l21.3-1.3c.2 0 .5 0 .7 .2l17.8 11.8c5.1 3.3 10.5 5.9 16.1 7.7L109.6 510c-4.7 11.3-16.5 17.8-28.6 15.5L57 521.3c-11.1-2.1-22.5 2.2-29.3 10.9L15.3 548.8C6.6 560 .5 548.7 1.3 441.8zm381.4 0c.8 106.9-5.3 118.2-14 107L356.3 532.2c-6.8-8.7-18.2-13-29.3-10.9l-23.4 4.4c-12.1 2.3-23.9-4.2-28.6-15.5l-62.2-147.6c5.6-1.8 11-4.4 16.1-7.7l17.8-11.8c.2-.1 .4-.2 .7-.2l21.3 1.3c26 1.5 50.3-12.6 62-35.8l9.6-19.1c.1-.2 .2-.3 .4-.4l43.1 102.5z"/></svg></span> 4th – 7th Place</div>
+          <div><div class="prize-amount">₹1,000</div></div>
+        </div>
+      </div>
+
+      <!-- WOMEN -->
+      <div class="prize-card">
+        <div class="prize-card-title"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="28" height="38" fill="currentColor"><path d="M400 0L176 0c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8L24 64C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9L192 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-26.1 0C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24L446.4 64c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112l84.4 0c9.1 90.1 29.2 150.3 51.9 190.6C133.4 281.5 84.8 250.6 48.9 112zm327.8 190.6c22.7-40.3 42.8-100.5 51.9-190.6l84.4 0c-35.9 138.6-84.5 169.5-136.3 190.6z"/></svg> Women's 6 Km Run</div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#FFD700"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 1st Place</div>
+          <div><div class="prize-amount">₹5,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#C0C0C0"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 2nd Place</div>
+          <div><div class="prize-amount">₹3,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18" fill="#CD7F32"><path d="M4.1 38.2C1.4 34.2 0 29.4 0 24.6C0 11 11 0 24.6 0H152.8c9.2 0 17.7 4.9 22.2 12.9L288 224 168 224 4.1 38.2zm503.8 0L344 224 224 224 337 12.9C341.5 4.9 350.1 0 359.2 0H487.4C501 0 512 11 512 24.6c0 4.8-1.4 9.6-4.1 13.6zM80 256a176 176 0 1 1 352 0A176 176 0 1 1 80 256zm175.4-80c-3.9 0-7.4 2.4-8.9 6.1l-14.6 35.9-38.8 2.7c-3.9 .3-7.3 2.9-8.5 6.7s0 7.8 3 10.4l29.5 25.1-9.1 38.3c-.9 3.8 .5 7.8 3.7 10.2s7.4 2.6 10.8 .5L256 311.7l33.5 19.9c3.4 2 7.7 1.9 10.8-.5s4.6-6.4 3.7-10.2l-9.1-38.3 29.5-25.1c3-2.6 4.2-6.6 3-10.4s-4.6-6.4-8.5-6.7l-38.8-2.7-14.6-35.9c-1.5-3.6-5-6.1-8.9-6.1z"/></svg></span> 3rd Place</div>
+          <div><div class="prize-amount">₹2,000</div></div>
+        </div>
+        <div class="prize-row">
+          <div class="prize-position"><span class="medal"><svg style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="16" height="18" fill="#a0c878"><path d="M173.8 5.5c11-7.3 25.4-7.3 36.4 0L228 17.2c6 3.9 13 5.8 20.1 5.4l21.3-1.3c13.2-.8 25.6 6.4 31.5 18.2l9.6 19.1c3.2 6.4 8.4 11.5 14.7 14.7L344.5 83c11.8 5.9 19 18.3 18.2 31.5l-1.3 21.3c-.4 7.1 1.5 14.2 5.4 20.1l11.8 17.8c7.3 11 7.3 25.4 0 36.4L366.8 228c-3.9 6-5.8 13-5.4 20.1l1.3 21.3c.8 13.2-6.4 25.6-18.2 31.5l-19.1 9.6c-6.4 3.2-11.5 8.4-14.7 14.7L301 344.5c-5.9 11.8-18.3 19-31.5 18.2l-21.3-1.3c-7.1-.4-14.2 1.5-20.1 5.4l-17.8 11.8c-11 7.3-25.4 7.3-36.4 0L156 366.8c-6-3.9-13-5.8-20.1-5.4l-21.3 1.3c-13.2 .8-25.6-6.4-31.5-18.2l-9.6-19.1c-3.2-6.4-8.4-11.5-14.7-14.7L39.5 301c-11.8-5.9-19-18.3-18.2-31.5l1.3-21.3c.4-7.1-1.5-14.2-5.4-20.1L5.5 210.2c-7.3-11-7.3-25.4 0-36.4L17.2 156c3.9-6 5.8-13 5.4-20.1l-1.3-21.3c-.8-13.2 6.4-25.6 18.2-31.5l19.1-9.6C64.9 70.2 70 65 73.2 58.7L83 39.5c5.9-11.8 18.3-19 31.5-18.2l21.3 1.3c7.1 .4 14.2-1.5 20.1-5.4L173.8 5.5zM272 192a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM1.3 441.8L44.4 339.3c.2 .1 .3 .2 .4 .4l9.6 19.1c11.7 23.2 36 37.3 62 35.8l21.3-1.3c.2 0 .5 0 .7 .2l17.8 11.8c5.1 3.3 10.5 5.9 16.1 7.7L109.6 510c-4.7 11.3-16.5 17.8-28.6 15.5L57 521.3c-11.1-2.1-22.5 2.2-29.3 10.9L15.3 548.8C6.6 560 .5 548.7 1.3 441.8zm381.4 0c.8 106.9-5.3 118.2-14 107L356.3 532.2c-6.8-8.7-18.2-13-29.3-10.9l-23.4 4.4c-12.1 2.3-23.9-4.2-28.6-15.5l-62.2-147.6c5.6-1.8 11-4.4 16.1-7.7l17.8-11.8c.2-.1 .4-.2 .7-.2l21.3 1.3c26 1.5 50.3-12.6 62-35.8l9.6-19.1c.1-.2 .2-.3 .4-.4l43.1 102.5z"/></svg></span> 4th – 7th Place</div>
+          <div><div class="prize-amount">₹1,000</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PROMO ═══════════════════════════════ -->
+<div style="background:var(--dark-green); padding: 60px 20px;">
+  <div class="promo-banner">
+    <h3><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="40" height="48" fill="currentColor"><path d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9l0 28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5l0-24.6c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.7l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496 262.9l-55.9 20.2c-20.1 7.2-41.2 10.9-62.6 10.9s-42.6-3.7-62.6-10.9l-55.9-20.2c-2 7-3 14.2-3 21.5l0 123.6z"/></svg> MGHSS Offers Class-XI Arts Stream</h3>
+    <p>"Your Career, Our Priority"</p>
+    <span class="concession"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="28" fill="currentColor"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0l133.1-133.1c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>   50% Admission Fee Concession for Early Birds</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ REGISTRATION FORM ═══════════════════ -->
+<div class="form-section" id="register">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-title" style="text-align:center;"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26" height="38" fill="currentColor"><path d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"/></svg> Register Now</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="form-container">
+    <div id="regForm">
+      <div class="form-grid">
+
+        <!-- Full Name -->
+        <div class="form-group full-width">
+          <label class="form-label" for="fullName">Full Name *</label>
+          <input class="form-input" id="fullName" type="text" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Age -->
+        <div class="form-group">
+          <label class="form-label" for="age">Age *</label>
+          <input class="form-input" id="age" type="number" min="13" max="99" placeholder="e.g. 25" required>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-group" style="position:relative;">
+          <label class="form-label">Date of Birth *</label>
+          <div class="dob-display" id="dobDisplay" onclick="toggleCalendar()" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCalendar()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="currentColor" style="color:var(--gold);flex-shrink:0;"><path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/></svg>
+            <span id="dobText" style="flex:1;">Select date of birth</span>
+            <span style="color:var(--gold);font-size:0.8rem;">&#9662;</span>
+          </div>
+          <input type="hidden" id="dob">
+
+          <div class="cal-popup" id="calPopup">
+            <div class="cal-nav">
+              <button class="cal-nav-btn" onclick="changeMonth(-1)" type="button">&#8249;</button>
+              <div class="cal-header-selects">
+                <select class="cal-select" id="calMonthSel" onchange="goToMonthYear()"></select>
+                <select class="cal-select" id="calYearSel" onchange="goToMonthYear()"></select>
+              </div>
+              <button class="cal-nav-btn" onclick="changeMonth(1)" type="button">&#8250;</button>
+            </div>
+            <div class="cal-weekdays">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="cal-days" id="calDays"></div>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-group full-width">
+          <label class="form-label">Gender *</label>
+          <div class="radio-group" id="genderGroup">
+            <div class="radio-option selected" onclick="selectOption(this,'genderGroup')">
+              <input type="radio" name="gender" value="Male" checked>
+              <svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="26" fill="currentColor"><path d="M352 0H256c-17.7 0-32 14.3-32 32s14.3 32 32 32h50.7L219.9 151.8C195.2 136.7 166.7 128 136 128C60.9 128 0 188.9 0 264S60.9 400 136 400s136-60.9 136-136c0-30.7-8.7-59.2-23.8-83.9L336 92.7V144c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM136 320a56 56 0 1 1 0-112 56 56 0 1 1 0 112z"/></svg> Male
+            </div>
+            <div class="radio-option" onclick="selectOption(this,'genderGroup')">
+              <input type="radio" name="gender" value="Female">
+              <svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512" width="24" height="26" fill="currentColor"><path d="M144 0C64.5 0 0 64.5 0 144s64.5 144 144 144s144-64.5 144-144S223.5 0 144 0zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192zm16 80l0 32 32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 32c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-32-32 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32z"/></svg> Female
+            </div>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group full-width">
+          <label class="form-label">Race Category *</label>
+          <div class="radio-group" id="categoryGroup">
+            <div class="radio-option selected" onclick="selectOption(this,'categoryGroup')">
+              <input type="radio" name="category" value="Men's 6 Km Run" checked>
+              <svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="26" height="28" fill="currentColor"><path d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 32.9-63.6 61.7-84.4c8.5-6.1 17.5-11.5 27-15.8l8-3.5c14.4-6.4 29.7-9.7 45.2-9.7c27.4 0 54 9.9 74.7 27.9l12.8 11.1c7.9 6.8 15.2 14.3 21.7 22.4l17.7 22.1c8.5 10.6 6.8 26-3.8 34.5s-26 6.8-34.5-3.8l-17.7-22.1c-4.4-5.5-9.3-10.6-14.7-15.1l-8.5-7.4 3.3 63.5 81.3 62.8c10.4 8 12.3 23 4.3 33.4l-2.4 3.1c-8 10.4-23 12.3-33.4 4.3l-87.7-67.8c-7.4-5.7-11.8-14.5-11.8-23.9l0-4-5.6 46.5c-1.1 9.4-6.6 17.7-14.8 22.4l-82.5 48c-14.3 8.3-32.5 3.5-40.9-10.8S6.2 360.5 20.5 352l73.6-42.8 15.7-131.4c1.2-9.9 4.9-19 10.7-26.5z"/></svg> Men's 6 Km
+            </div>
+            <div class="radio-option" onclick="selectOption(this,'categoryGroup')">
+              <input type="radio" name="category" value="Women's 6 Km Run">
+              <svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="26" height="28" fill="currentColor"><path d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 32.9-63.6 61.7-84.4c8.5-6.1 17.5-11.5 27-15.8l8-3.5c14.4-6.4 29.7-9.7 45.2-9.7c27.4 0 54 9.9 74.7 27.9l12.8 11.1c7.9 6.8 15.2 14.3 21.7 22.4l17.7 22.1c8.5 10.6 6.8 26-3.8 34.5s-26 6.8-34.5-3.8l-17.7-22.1c-4.4-5.5-9.3-10.6-14.7-15.1l-8.5-7.4 3.3 63.5 81.3 62.8c10.4 8 12.3 23 4.3 33.4l-2.4 3.1c-8 10.4-23 12.3-33.4 4.3l-87.7-67.8c-7.4-5.7-11.8-14.5-11.8-23.9l0-4-5.6 46.5c-1.1 9.4-6.6 17.7-14.8 22.4l-82.5 48c-14.3 8.3-32.5 3.5-40.9-10.8S6.2 360.5 20.5 352l73.6-42.8 15.7-131.4c1.2-9.9 4.9-19 10.7-26.5z"/></svg> Women's 6 Km
+            </div>
+          </div>
+        </div>
+
+        <!-- Village / Town -->
+        <div class="form-group">
+          <label class="form-label" for="village">Village / Town *</label>
+          <input class="form-input" id="village" type="text" placeholder="Your village or town" required>
+        </div>
+
+        <!-- District -->
+        <div class="form-group">
+          <label class="form-label" for="district">District *</label>
+          <div class="select-wrapper">
+            <select class="form-select" id="district" required>
+              <option value="" disabled selected>Select district</option>
+              <option>Senapati</option>
+              <option>Imphal East</option>
+              <option>Imphal West</option>
+              <option>Bishnupur</option>
+              <option>Churachandpur</option>
+              <option>Ukhrul</option>
+              <option>Tamenglong</option>
+              <option>Chandel</option>
+              <option>Thoubal</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Declaration -->
+        <div class="form-group full-width" style="margin-top:8px;">
+          <label style="display:flex; align-items:flex-start; gap:12px; cursor:pointer; font-size:0.82rem; color:rgba(255,255,255,0.7); line-height:1.5;">
+            <input type="checkbox" id="declaration" style="margin-top:3px; accent-color:var(--gold); width:16px; height:16px; flex-shrink:0;" required>
+            I confirm that I am 13 years of age or older and am physically fit to participate in the MGHSS Open Marathon 2026. I agree to abide by the event rules and participate at my own risk.
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group full-width">
+          <button class="submit-btn" onclick="handleSubmit()"><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor"><path d="M32 0C49.7 0 64 14.3 64 32l0 16 69-17.2c38.1-9.5 78.3-5.1 113.5 12.5c46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1l0 279.7c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4c-37.9-19-81.3-23.7-122.5-13.4L64 384l0 96c0 17.7-14.3 32-32 32S0 497.7 0 480L0 32C0 14.3 14.3 0 32 0zm80 96l0 208c45.1-8.4 91.4-3.7 133.4 13.9c14.2 5.8 29.2 8.5 44.4 8.1l-24.4-24.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L352 297.4l0-167c-23.1 6.9-47.4 10-71.8 9.2l-2.1-.1c-36.8-1.4-72.7-11.3-105-29L112 96z"/></svg> REGISTER FOR THE MARATHON</button>
+        </div>
+
+      </div><!-- /form-grid -->
+    </div><!-- /regForm -->
+
+    <div class="success-msg" id="successMsg">
+      <h3><svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" fill="#6fcf60"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Registration Successful!</h3>
+      <p>Thank you for registering for the <strong>MGHSS Open Marathon 2026</strong>.</p>
+      <p style="margin-top:8px;">Race day: <strong>Saturday, March 28, 2026 at 05:30 AM</strong></p>
+      <p>Venue: <strong>Tadubi Junction</strong> — Please arrive by 5:00 AM.</p>
+      <p style="margin-top:12px; color:var(--gold); font-weight:700;">See you at the starting line! <svg style="vertical-align:middle;display:inline-block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="16" height="18" fill="currentColor"><path d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 32.9-63.6 61.7-84.4c8.5-6.1 17.5-11.5 27-15.8l8-3.5c14.4-6.4 29.7-9.7 45.2-9.7c27.4 0 54 9.9 74.7 27.9l12.8 11.1c7.9 6.8 15.2 14.3 21.7 22.4l17.7 22.1c8.5 10.6 6.8 26-3.8 34.5s-26 6.8-34.5-3.8l-17.7-22.1c-4.4-5.5-9.3-10.6-14.7-15.1l-8.5-7.4 3.3 63.5 81.3 62.8c10.4 8 12.3 23 4.3 33.4l-2.4 3.1c-8 10.4-23 12.3-33.4 4.3l-87.7-67.8c-7.4-5.7-11.8-14.5-11.8-23.9l0-4-5.6 46.5c-1.1 9.4-6.6 17.7-14.8 22.4l-82.5 48c-14.3 8.3-32.5 3.5-40.9-10.8S6.2 360.5 20.5 352l73.6-42.8 15.7-131.4c1.2-9.9 4.9-19 10.7-26.5z"/></svg></p>
+    </div>
+  </div><!-- /form-container -->
+</div>
+
+<!-- ═══════════════════════════════ SPONSORS ═══════════════════════════════ -->
+<div class="sponsors">
+  <div class="sponsors-title">Sponsors &amp; Partners</div>
+  <div class="sponsors-list">
+    <div class="sponsor-chip">M/S Akasaa Inc. — Colour &amp; Light House</div>
+    <div class="sponsor-chip">Bright Smile Dental Clinic</div>
+    <div class="sponsor-chip">Tadubi MRF</div>
+    <div class="sponsor-chip">Kayina Dental Clinic</div>
+    <div class="sponsor-chip">SBI — Tadubi Branch</div>
+    <div class="sponsor-chip">STIHL Tadubi</div>
+    <div class="sponsor-chip">Kolakhe Bistro</div>
+    <div class="sponsor-chip">Umai Cafe</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <p>© 2026 <span>Mount Gibeon Higher Secondary School</span></p>
+</footer>
+
+<a class="scroll-top" href="#top" title="Back to top">↑</a>
+
+<script>
+  function selectOption(el, groupId) {
+    document.querySelectorAll('#' + groupId + ' .radio-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const radio = el.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+  }
+
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxQ4pDLHEhLcq1Drit7S_4nz9TvIRXOFmCpIODE2WXXem-tFL4yCPTS4eoFj8UJ1NI/exec';
+
+  function handleSubmit() {
+    const required = [
+      { id: 'fullName', label: 'Full Name' },
+      { id: 'age',      label: 'Age' },
+      { id: 'dob',      label: 'Date of Birth' },
+      { id: 'village',  label: 'Village / Town' },
+      { id: 'district', label: 'District' },
+    ];
+
+    for (const f of required) {
+      const el = document.getElementById(f.id);
+      if (!el.value || !el.value.trim()) {
+        if (f.id !== 'dob') { el.focus(); el.style.borderColor = '#e85c0d'; setTimeout(() => el.style.borderColor = '', 2000); }
+        else { document.getElementById('dobDisplay').style.borderColor = '#e85c0d'; setTimeout(() => document.getElementById('dobDisplay').style.borderColor = '', 2000); }
+        alert('Please fill in: ' + f.label);
+        return;
+      }
+    }
+
+    const age = parseInt(document.getElementById('age').value);
+    if (isNaN(age) || age < 13) {
+      alert('Participants must be 13 years or older.');
+      return;
+    }
+
+    const decl = document.getElementById('declaration');
+    if (!decl.checked) {
+      alert('Please accept the declaration to proceed.');
+      return;
+    }
+
+    // Collect data
+    const gender  = document.querySelector('input[name="gender"]:checked')?.value || '';
+    const category = document.querySelector('input[name="category"]:checked')?.value || '';
+
+    const payload = {
+      fullName: document.getElementById('fullName').value.trim(),
+      age:      document.getElementById('age').value,
+      dob:      document.getElementById('dob').value,
+      gender,
+      category,
+      village:  document.getElementById('village').value.trim(),
+      district: document.getElementById('district').value,
+    };
+
+    // Disable form & show loading state
+    const btn = document.querySelector('.submit-btn');
+    const origText = btn.innerHTML;
+    btn.innerHTML = '⏳ Submitting...';
+    btn.disabled = true;
+    document.getElementById('regForm').style.opacity = '0.6';
+    document.getElementById('regForm').style.pointerEvents = 'none';
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    .then(() => {
+      // no-cors means we can't read response, but if no error thrown it worked
+      document.getElementById('regForm').style.opacity = '0.3';
+      document.getElementById('successMsg').classList.add('show');
+      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(() => {
+      // Re-enable on network error
+      btn.innerHTML = origText;
+      btn.disabled = false;
+      document.getElementById('regForm').style.opacity = '1';
+      document.getElementById('regForm').style.pointerEvents = 'auto';
+      alert('Network error — please check your connection and try again.');
+    });
+  }
+
+  // ─── CUSTOM DOB CALENDAR ───
+  const MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  let calCurrent = new Date();
+  calCurrent.setDate(1);
+  let calSelected = null;
+  let calOpen = false;
+
+  function initCalendar() {
+    const today = new Date();
+    // Default view: 25 years ago
+    calCurrent = new Date(today.getFullYear() - 25, today.getMonth(), 1);
+
+    // Populate month select
+    const mSel = document.getElementById('calMonthSel');
+    MONTHS.forEach((m, i) => {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = m; mSel.appendChild(o);
+    });
+
+    // Populate year select (1930 to today)
+    const ySel = document.getElementById('calYearSel');
+    for (let y = today.getFullYear(); y >= 1930; y--) {
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y; ySel.appendChild(o);
+    }
+
+    renderCalendar();
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('calPopup');
+      const display = document.getElementById('dobDisplay');
+      if (calOpen && !popup.contains(e.target) && !display.contains(e.target)) {
+        closeCalendar();
+      }
+    });
+  }
+
+  function toggleCalendar() {
+    calOpen ? closeCalendar() : openCalendar();
+  }
+
+  function openCalendar() {
+    calOpen = true;
+    document.getElementById('calPopup').classList.add('show');
+    document.getElementById('dobDisplay').classList.add('open');
+    renderCalendar();
+  }
+
+  function closeCalendar() {
+    calOpen = false;
+    document.getElementById('calPopup').classList.remove('show');
+    document.getElementById('dobDisplay').classList.remove('open');
+  }
+
+  function changeMonth(delta) {
+    calCurrent.setMonth(calCurrent.getMonth() + delta);
+    renderCalendar();
+  }
+
+  function goToMonthYear() {
+    const m = parseInt(document.getElementById('calMonthSel').value);
+    const y = parseInt(document.getElementById('calYearSel').value);
+    calCurrent = new Date(y, m, 1);
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const year = calCurrent.getFullYear();
+    const month = calCurrent.getMonth();
+
+    // Sync selects
+    document.getElementById('calMonthSel').value = month;
+    document.getElementById('calYearSel').value = year;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrev = new Date(year, month, 0).getDate();
+
+    const grid = document.getElementById('calDays');
+    grid.innerHTML = '';
+
+    // Previous month tail
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const d = document.createElement('div');
+      d.className = 'cal-day other-month';
+      d.textContent = daysInPrev - i;
+      grid.appendChild(d);
+    }
+
+    // Current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      date.setHours(0,0,0,0);
+      const el = document.createElement('div');
+      el.className = 'cal-day';
+      el.textContent = d;
+
+      if (date > today) {
+        el.classList.add('future');
+      } else {
+        if (date.toDateString() === today.toDateString()) el.classList.add('today');
+        if (calSelected && date.toDateString() === calSelected.toDateString()) el.classList.add('selected');
+        el.addEventListener('click', function() { selectDate(year, month, d); });
+      }
+      grid.appendChild(el);
+    }
+
+    // Next month fill
+    const total = firstDay + daysInMonth;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let d = 1; d <= remaining; d++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day other-month';
+      el.textContent = d;
+      grid.appendChild(el);
+    }
+  }
+
+  function selectDate(year, month, day) {
+    calSelected = new Date(year, month, day);
+    const pad = n => String(n).padStart(2,'0');
+    const iso = year + '-' + pad(month+1) + '-' + pad(day);
+    document.getElementById('dob').value = iso;
+
+    const label = MONTHS[month] + ' ' + day + ', ' + year;
+    document.getElementById('dobText').textContent = label;
+    document.getElementById('dobDisplay').classList.add('has-value');
+
+    // Auto-fill age
+    const today = new Date();
+    let age = today.getFullYear() - year;
+    if (today.getMonth() < month || (today.getMonth() === month && today.getDate() < day)) age--;
+    const ageEl = document.getElementById('age');
+    if (ageEl && !ageEl.value) ageEl.value = age;
+
+    renderCalendar(); // refresh selected highlight
+    closeCalendar();
+  }
+
+  document.addEventListener('DOMContentLoaded', initCalendar);
+
+</script>
+</body>
+</html>
