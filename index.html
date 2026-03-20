@@ -1145,238 +1145,31 @@
 <a class="scroll-top" href="#top" title="Back to top">↑</a>
 
 <script>
-  function selectOption(el, groupId) {
-    document.querySelectorAll('#' + groupId + ' .radio-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    const radio = el.querySelector('input[type="radio"]');
-    if (radio) radio.checked = true;
+async function handleSubmit() {
+  const data = {
+    fullName: document.getElementById('fullName').value,
+    age: document.getElementById('age').value,
+    dob: document.getElementById('dob').value,
+    gender: document.querySelector('input[name="gender"]:checked').value,
+    category: document.querySelector('input[name="category"]:checked').value,
+    village: document.getElementById('village').value,
+    district: document.getElementById('district').value
+  };
+
+  // validation (keep your existing checks if you want)
+
+  const response = await fetch("https://script.google.com/macros/s/AKfycbwz_cNUJw3tBLQ9WpVvFX-O9fE0ip3Hzp82lB0F5SxL8Yu_JxFtjf1Dw7sRwMAq38Q/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+  if (response.ok) {
+    document.getElementById('regForm').style.opacity = '0.3';
+    document.getElementById('successMsg').classList.add('show');
+  } else {
+    alert("Submission failed. Try again.");
   }
-
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxQ4pDLHEhLcq1Drit7S_4nz9TvIRXOFmCpIODE2WXXem-tFL4yCPTS4eoFj8UJ1NI/exec';
-
-  function handleSubmit() {
-    const required = [
-      { id: 'fullName', label: 'Full Name' },
-      { id: 'age',      label: 'Age' },
-      { id: 'dob',      label: 'Date of Birth' },
-      { id: 'village',  label: 'Village / Town' },
-      { id: 'district', label: 'District' },
-    ];
-
-    for (const f of required) {
-      const el = document.getElementById(f.id);
-      if (!el.value || !el.value.trim()) {
-        if (f.id !== 'dob') { el.focus(); el.style.borderColor = '#e85c0d'; setTimeout(() => el.style.borderColor = '', 2000); }
-        else { document.getElementById('dobDisplay').style.borderColor = '#e85c0d'; setTimeout(() => document.getElementById('dobDisplay').style.borderColor = '', 2000); }
-        alert('Please fill in: ' + f.label);
-        return;
-      }
-    }
-
-    const age = parseInt(document.getElementById('age').value);
-    if (isNaN(age) || age < 13) {
-      alert('Participants must be 13 years or older.');
-      return;
-    }
-
-    const decl = document.getElementById('declaration');
-    if (!decl.checked) {
-      alert('Please accept the declaration to proceed.');
-      return;
-    }
-
-    // Collect data
-    const gender  = document.querySelector('input[name="gender"]:checked')?.value || '';
-    const category = document.querySelector('input[name="category"]:checked')?.value || '';
-
-    const payload = {
-      fullName: document.getElementById('fullName').value.trim(),
-      age:      document.getElementById('age').value,
-      dob:      document.getElementById('dob').value,
-      gender,
-      category,
-      village:  document.getElementById('village').value.trim(),
-      district: document.getElementById('district').value,
-    };
-
-    // Direct fetch POST — script confirmed working
-    const btn = document.querySelector('.submit-btn');
-    const origText = btn.innerHTML;
-    btn.innerHTML = '⏳ Submitting...';
-    btn.disabled = true;
-    document.getElementById('regForm').style.opacity = '0.6';
-    document.getElementById('regForm').style.pointerEvents = 'none';
-
-    const formBody = Object.entries(payload)
-      .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
-      .join('&');
-
-    fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formBody,
-    })
-    .then(() => {
-      document.getElementById('regForm').style.opacity = '0.3';
-      document.getElementById('successMsg').classList.add('show');
-      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    })
-    .catch(() => {
-      btn.innerHTML = origText;
-      btn.disabled = false;
-      document.getElementById('regForm').style.opacity = '1';
-      document.getElementById('regForm').style.pointerEvents = 'auto';
-      alert('Network error — please check your connection and try again.');
-    });
-  }
-
-  // ─── CUSTOM DOB CALENDAR ───
-  const MONTHS = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-  let calCurrent = new Date();
-  calCurrent.setDate(1);
-  let calSelected = null;
-  let calOpen = false;
-
-  function initCalendar() {
-    const today = new Date();
-    // Default view: 25 years ago
-    calCurrent = new Date(today.getFullYear() - 25, today.getMonth(), 1);
-
-    // Populate month select
-    const mSel = document.getElementById('calMonthSel');
-    MONTHS.forEach((m, i) => {
-      const o = document.createElement('option');
-      o.value = i; o.textContent = m; mSel.appendChild(o);
-    });
-
-    // Populate year select (1930 to today)
-    const ySel = document.getElementById('calYearSel');
-    for (let y = today.getFullYear(); y >= 1930; y--) {
-      const o = document.createElement('option');
-      o.value = y; o.textContent = y; ySel.appendChild(o);
-    }
-
-    renderCalendar();
-
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-      const popup = document.getElementById('calPopup');
-      const display = document.getElementById('dobDisplay');
-      if (calOpen && !popup.contains(e.target) && !display.contains(e.target)) {
-        closeCalendar();
-      }
-    });
-  }
-
-  function toggleCalendar() {
-    calOpen ? closeCalendar() : openCalendar();
-  }
-
-  function openCalendar() {
-    calOpen = true;
-    document.getElementById('calPopup').classList.add('show');
-    document.getElementById('dobDisplay').classList.add('open');
-    renderCalendar();
-  }
-
-  function closeCalendar() {
-    calOpen = false;
-    document.getElementById('calPopup').classList.remove('show');
-    document.getElementById('dobDisplay').classList.remove('open');
-  }
-
-  function changeMonth(delta) {
-    calCurrent.setMonth(calCurrent.getMonth() + delta);
-    renderCalendar();
-  }
-
-  function goToMonthYear() {
-    const m = parseInt(document.getElementById('calMonthSel').value);
-    const y = parseInt(document.getElementById('calYearSel').value);
-    calCurrent = new Date(y, m, 1);
-    renderCalendar();
-  }
-
-  function renderCalendar() {
-    const today = new Date();
-    today.setHours(0,0,0,0);
-
-    const year = calCurrent.getFullYear();
-    const month = calCurrent.getMonth();
-
-    // Sync selects
-    document.getElementById('calMonthSel').value = month;
-    document.getElementById('calYearSel').value = year;
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const daysInPrev = new Date(year, month, 0).getDate();
-
-    const grid = document.getElementById('calDays');
-    grid.innerHTML = '';
-
-    // Previous month tail
-    for (let i = firstDay - 1; i >= 0; i--) {
-      const d = document.createElement('div');
-      d.className = 'cal-day other-month';
-      d.textContent = daysInPrev - i;
-      grid.appendChild(d);
-    }
-
-    // Current month days
-    for (let d = 1; d <= daysInMonth; d++) {
-      const date = new Date(year, month, d);
-      date.setHours(0,0,0,0);
-      const el = document.createElement('div');
-      el.className = 'cal-day';
-      el.textContent = d;
-
-      if (date > today) {
-        el.classList.add('future');
-      } else {
-        if (date.toDateString() === today.toDateString()) el.classList.add('today');
-        if (calSelected && date.toDateString() === calSelected.toDateString()) el.classList.add('selected');
-        el.addEventListener('click', function() { selectDate(year, month, d); });
-      }
-      grid.appendChild(el);
-    }
-
-    // Next month fill
-    const total = firstDay + daysInMonth;
-    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
-    for (let d = 1; d <= remaining; d++) {
-      const el = document.createElement('div');
-      el.className = 'cal-day other-month';
-      el.textContent = d;
-      grid.appendChild(el);
-    }
-  }
-
-  function selectDate(year, month, day) {
-    calSelected = new Date(year, month, day);
-    const pad = n => String(n).padStart(2,'0');
-    const iso = year + '-' + pad(month+1) + '-' + pad(day);
-    document.getElementById('dob').value = iso;
-
-    const label = MONTHS[month] + ' ' + day + ', ' + year;
-    document.getElementById('dobText').textContent = label;
-    document.getElementById('dobDisplay').classList.add('has-value');
-
-    // Auto-fill age
-    const today = new Date();
-    let age = today.getFullYear() - year;
-    if (today.getMonth() < month || (today.getMonth() === month && today.getDate() < day)) age--;
-    const ageEl = document.getElementById('age');
-    if (ageEl && !ageEl.value) ageEl.value = age;
-
-    renderCalendar(); // refresh selected highlight
-    closeCalendar();
-  }
-
-  document.addEventListener('DOMContentLoaded', initCalendar);
-
+}
 </script>
 </body>
 </html>
