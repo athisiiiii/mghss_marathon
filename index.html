@@ -877,7 +877,7 @@
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero" id="top">
   <div class="header-band">
-    <div class="school-logo"><img src="PHOTO-2026-03-18-10-18-08-removebg-preview.png" alt="MGHSS Logo"></div>
+    <div class="school-logo"><img src="/PHOTO-2026-03-18-10-18-08-removebg-preview.png" alt="MGHSS Logo"></div>
     <div class="school-name-block">
       <div class="school-name">Mount Gibeon Higher Secondary School</div>
       <div class="school-tagline">A Wise and Understanding Heart — Tadubi</div>
@@ -1196,27 +1196,36 @@
       district: document.getElementById('district').value,
     };
 
-    // Direct form POST — bypasses CORS completely, Apps Script redirects back
+    // Direct fetch POST — script confirmed working
     const btn = document.querySelector('.submit-btn');
+    const origText = btn.innerHTML;
     btn.innerHTML = '⏳ Submitting...';
     btn.disabled = true;
+    document.getElementById('regForm').style.opacity = '0.6';
+    document.getElementById('regForm').style.pointerEvents = 'none';
 
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SHEET_URL;
-    form.target = '_self';
-    form.style.display = 'none';
+    const formBody = Object.entries(payload)
+      .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+      .join('&');
 
-    Object.entries(payload).forEach(([k, v]) => {
-      const inp = document.createElement('input');
-      inp.type = 'hidden';
-      inp.name = k;
-      inp.value = v;
-      form.appendChild(inp);
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody,
+    })
+    .then(() => {
+      document.getElementById('regForm').style.opacity = '0.3';
+      document.getElementById('successMsg').classList.add('show');
+      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(() => {
+      btn.innerHTML = origText;
+      btn.disabled = false;
+      document.getElementById('regForm').style.opacity = '1';
+      document.getElementById('regForm').style.pointerEvents = 'auto';
+      alert('Network error — please check your connection and try again.');
     });
-
-    document.body.appendChild(form);
-    form.submit();
   }
 
   // ─── CUSTOM DOB CALENDAR ───
